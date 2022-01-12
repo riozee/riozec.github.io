@@ -1,3 +1,51 @@
 body {
   background-color: #eee;
+  font-family: Rubik, sans-serif;
+  font-weight: 400;
 }
+
+#main-text {
+	text-size: 3rem;
+	background-color: #0008;
+	border-radius: 1rem;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(50%, 50%);
+}
+
+#header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+#nav {
+	margin: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+#nav-ico {
+	background-color: #fff8;
+	border-radius: 1rem;
+	padding: auto;
+}
+
+#nav-ul {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: #fff8;
+}
+
+#nav-ul:focus-within {
+	display: block;
+}
+
