@@ -2,104 +2,112 @@
 <html>
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="author" content="RiozeC" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=VT323&display=swap"
-        rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="RiozeC" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=VT323&display=swap"
+    rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <title>welcome ^_^</title>
+  <title>welcome ^_^</title>
 
-    <style>
-        body {
-            background-color: #fff;
-            font-family: Rubik, 'Arial Rounded', sans-serif;
-        }
+  <style>
+    body {
+      background-color: #fff;
+      font-family: Rubik, 'Arial Rounded', sans-serif;
+    }
 
-        #fioze {
-            display: flex;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-        }
+    #fioze {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+    }
 
-        #fioze svg {
-            width: 15rem;
-            margin-top: 5rem;
-            margin-bottom: 1rem;
-        }
+    #fioze svg {
+      width: 15rem;
+      margin-top: 5rem;
+      margin-bottom: 1rem;
+    }
 
-        hr {
-            margin-bottom: 2rem;
-        }
+    hr {
+      margin-bottom: 2rem;
+    }
 
-        #items {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    h4 {
+      text-align: center;
+    }
 
-        .btn {
-            position: relative;
-            width: 15rem;
-            height: 5rem;
-            border-radius: 0rem;
-            transition: border-radius 0.3s;
-        }
+    #items {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-        .btn:hover {
-            border-radius: 1rem;
-        }
+    .btn {
+      position: relative;
+      width: 15rem;
+      height: 5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0.1rem 0.1rem 5px #0009;
+      transition: box-shadow 0.3s;
+    }
 
-        .btn:active {
-            box-shadow: 0.1rem 0.1rem #000;
-        }
+    .btn:hover {
+      box-shadow: 0.2rem 0.2rem #000;
+      cursor: pointer;
+    }
 
-        #mikibot-btn {
-            background-color: #ff0;
-            text-align: center;
-            color: #fff;
-            font-size: 1.5rem;
-        }
+    .btn:active {
+      box-shadow: 0.2rem 0.2rem #000;
+    }
 
-        #mikibot-btn svg {
-            position: absolute;
-            width: 2rem;
-            bottom: 0;
-            left: 1rem;
-        }
-    </style>
+    #mikibot-btn {
+      background-color: #ddd;
+      border: 0.1rem black;
+      display: flex;
+      justify-content: center;
+    }
+
+    #mikibot-btn svg {
+      width: 90%;
+    }
+  </style>
 </head>
 
 <body>
-    <div id="fioze">
-        <svg viewBox="0 0 440 100">
-            <path
-                d="M 30 0 L 30 50 L 100 37.5 L 30 25 L 100 12.5 L 30 0 M 260 5 L 330 25 L 260 45 M 330 55 L 260 75 L 330 95 L 330 55"
-                fill="#00f" opacity="75%" />
-            <path d="M 0 0 L 0 100 L 30 100 L 30 0 M 110 0 L 110 100 L 140 100 L 140 0 L 110 0" fill="#0f0"
-                opacity="75%" />
-            <circle cx="75" cy="75" r="25" fill="#f00" opacity="75%" />
-            <circle cx="200" cy="50" r="50" fill="#f00" opacity="75%" />
-            <path d="M 440 50 A 50 50 0 1 0 390 100 L 390 50 Z" fill="#ff0" opacity="50%" />
-        </svg>
+  <div id="fioze">
+    <svg viewBox="0 0 440 100">
+      <path
+        d="M 30 0 L 30 50 L 100 37.5 L 30 25 L 100 12.5 L 30 0 M 260 5 L 330 25 L 260 45 M 330 55 L 260 75 L 330 95 L 330 55"
+        fill="#00f" opacity="75%" />
+      <path d="M 0 0 L 0 100 L 30 100 L 30 0 M 110 0 L 110 100 L 140 100 L 140 0 L 110 0" fill="#0f0" opacity="75%" />
+      <circle cx="75" cy="75" r="25" fill="#f00" opacity="75%" />
+      <circle cx="200" cy="50" r="50" fill="#f00" opacity="75%" />
+      <path d="M 440 50 A 50 50 0 1 0 390 100 L 390 50 Z" fill="#ff0" opacity="50%" />
+    </svg>
+  </div>
+  <hr />
+  <h4>Projects:</h4>
+  <div id="items">
+    <div class="btn" id="mikibot-btn" onclick="window.open('/mikibot', '_blank')">
+      <svg viewBox="0 0 460 100">
+        <path
+          d="M 0 0 L 0 100 L 25 100 L 25 0 L 0 0 M 75 0 L 75 100 L 100 100 L 100 0 L 75 0 M 110 0 L 110 100 L 135 100 L 135 0 L 110 0 M 145 0 L 145 100 L 170 100 L 170 0 L 145 0 M 205 0 L 205 100 L 230 100 L 230 0 L 205 0 M 240 0 L 240 100 L 265 100 L 265 0 L 240 0 M 400 0 L 400 100 L 425 100 L 425 0 L 400 0"
+          fill="#eccc29" opacity="75%" />
+        <path
+          d="M 12.5 0 L 50.5 100 L 87.5 0 L 12.5 0 M 145 50.5 L 195 12.5 L 195 87.5 L 145 50.5 M 365 25 L 460 25 L 412.5 0 L 365 25"
+          fill="#40c81e" opacity="75%" />
+        <circle cx="265" cy="25" r="25" fill="#3c9bdd" opacity="75%" />
+        <circle cx="265" cy="75" r="25" fill="#3c9bdd" opacity="75%" />
+        <circle cx="340" cy="50" r="50" fill="#3c9bdd" opacity="75%" />
+      </svg>
     </div>
-    <hr />
-    <div id="items">
-        <div class="btn" id="mikibot-btn" onclick="window.open('/mikibot', '_blank')">
-            <p>Miki Bot</p>
-            <svg viewBox="0 0 900 800">
-                <path d="M 0 0 L 180 0 L 540 800 L 360 800 Z M 720 0 L 900 0 L 540 800 L 360 800 Z" fill="#40c81e" />
-                <path d="M 0 0 L 180 0 L 180 800 L 0 800 Z" fill="#eccc29" />
-                <path d="M 720 0 L 900 0 L 900 800 L 720 800 Z" fill="#3c9bdd" />
-            </svg>
-        </div>
-    </div>
-    <p style="text-align: center;">&copy; RiozeC 2022. <a href="https://github.com/riozec">GitHub</a></p>
+  </div>
+  <p style="text-align: center;">&copy; RiozeC 2022. <a href="https://github.com/riozec">GitHub</a></p>
 </body>
 
 </html>

@@ -1,28 +1,440 @@
 <!DOCTYPE html>
-<html>
+<html class="day-mode">
+
 <head>
 
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="author" content="RiozeC" />    
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=VT323&display=swap" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="RiozeC" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=VT323&display=swap"
+    rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="commandslist.js"></script>
 
-<title>Miki Bot</title>
-<link rel="stylesheet" href="index.css">
-<script src="index.js"></script>
+  <title>Miki Bot</title>
 
+  <style>
+    .day-mode {
+      --bg-color: #eee;
+      --bg-color1: #ccc;
+      --bg-color2: #aaa;
+      --fg-color: #000;
+    }
+
+    .night-mode {
+      --bg-color: #050505;
+      --bg-color1: #222;
+      --bg-color2: #333;
+      --fg-color: #eee;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: Rubik, 'Arial Rounded', sans-serif;
+      color: var(--fg-color);
+      transition: background-color 0.3s;
+    }
+
+    #header {
+      position: fixed;
+      width: 100%;
+      height: 3rem;
+      line-height: 3rem;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(var(--bg-color), 0.5);
+      box-shadow: 0.1rem 0px 5px #666;
+      backdrop-filter: blur(5px);
+      overflow: hidden;
+      transition: height 0.15s;
+    }
+
+    #logo {
+      position: relative;
+      height: 75%;
+      padding: 0.4rem;
+    }
+
+    #mode {
+      float: right;
+      height: 2rem;
+      width: 2rem;
+      padding: 0.5rem;
+    }
+
+    #search-cmd {
+      position: relative;
+      float: right;
+      height: 2rem;
+      width: 2rem;
+      margin: 0.2rem;
+      padding: 0.3rem;
+      transition: background-color 0.3s;
+    }
+
+    #search-cmd svg {
+      fill: var(--fg-color);
+    }
+
+    #search-cmd-input {
+      color: var(--fg-color);
+      display: none;
+      float: right;
+      width: 7rem;
+      height: 2rem;
+      padding: 0.3rem;
+      background-color: #3c9bdd40;
+      border: none;
+      margin: 0.2rem;
+      border-radius: 0.3rem;
+      transition: background-color 0.3s, border-radius 0.3s;
+    }
+
+    #search-cmd:hover {
+      background-color: #3c9bdd40;
+    }
+
+    #search-cmd:active {
+      background-color: #3c9bdd;
+    }
+
+    #search-cmd-input:focus {
+      background-color: #eccc2940;
+    }
+
+    #scroll-progress {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 50%;
+      height: 0.2rem;
+      background-color: #3c9bdd;
+      opacity: 75%;
+    }
+
+    #goToTop {
+      position: fixed;
+      display: flex;
+      justify-content: center;
+      right: 2.5%;
+      bottom: 110%;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      background-color: #eccc29;
+      transition: bottom 0.25s;
+    }
+
+    #goToTop svg {
+      width: 1.5rem;
+    }
+
+    #contacts {
+      margin: 5rem auto 2rem auto;
+      display: flex;
+      width: 95%;
+      background-color: var(--bg-color1);
+      border-radius: 1rem;
+      padding: 0.25rem;
+    }
+
+    .contacts-btn {
+      text-decoration: none;
+      height: 1rem;
+      padding: 0.5rem;
+      margin: 0.25rem;
+      color: white;
+      transition: margin 0.15s;
+    }
+
+    .contacts-btn:hover {
+      margin: 0.25rem 0.5rem;
+      cursor: pointer;
+    }
+
+    .contacts-btn:active {
+      margin: 0.25rem 0.5rem;
+    }
+
+    .whatsapp {
+      background-color: #40c81e;
+      border-radius: 0.5rem;
+    }
+
+    .telegram {
+      background-color: #1bb1e2;
+      border-radius: 0.5rem;
+    }
+
+    .vt323 {
+      font-family: VT323, Courier, monospace;
+      font-size: 1.5em;
+    }
+
+    #cmd {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .cmd-item {
+      width: 100%;
+      margin: 0.25rem 0;
+      padding: 0.25rem;
+      background-color: var(--bg-color1);
+      color: var(--fg-color);
+    }
+
+    .cmd-item-category-container {
+      display: flex;
+      gap: 0.25rem;
+      padding: 0.25rem;
+      margin: 0.25rem;
+    }
+
+    .cmd-item-category {
+      display: inline-flex;
+      align-items: center;
+      background-color: var(--bg-color2);
+      border-radius: 0.5rem;
+      padding: 0.25rem;
+    }
+
+    .cmd-item-category:hover {
+      border: 0.05rem dashed var(--fg-color);
+    }
+
+    .cmd-syntax {
+      background-color: var(--bg-color2);
+      padding: 0.25rem;
+      margin: 0.25rem;
+    }
+
+    .cmd-desc {
+      padding: 0.25rem;
+      margin: 0.25rem;
+      background-color: var(--bg-color2);
+    }
+
+    #footer {
+      width: 100%;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      background-color: var(--bg-color1);
+    }
+
+    #footer svg {
+      width: 5rem;
+      margin: auto;
+    }
+  </style>
 </head>
+
 <body>
 
-  <div id="svg-container">
-    <svg viewBox="0 0 900 800">
-      <path d="M 0 0 L 180 0 L 540 800 L 360 800 Z M 720 0 L 900 0 L 540 800 L 360 800 Z" fill="#40c81e" />
-      <path d="M 0 0 L 180 0 L 180 800 L 0 800 Z" fill="#eccc29" />
-      <path d="M 720 0 L 900 0 L 900 800 L 720 800 Z" fill="#3c9bdd" />
-    </svg>    
+  <div id="header">
+    <svg id="logo" viewBox="0 0 460 100">
+      <path
+        d="M 0 0 L 0 100 L 25 100 L 25 0 L 0 0 M 75 0 L 75 100 L 100 100 L 100 0 L 75 0 M 110 0 L 110 100 L 135 100 L 135 0 L 110 0 M 145 0 L 145 100 L 170 100 L 170 0 L 145 0 M 205 0 L 205 100 L 230 100 L 230 0 L 205 0 M 240 0 L 240 100 L 265 100 L 265 0 L 240 0 M 400 0 L 400 100 L 425 100 L 425 0 L 400 0"
+        fill="#eccc29" opacity="75%" />
+      <path
+        d="M 12.5 0 L 50.5 100 L 87.5 0 L 12.5 0 M 145 50.5 L 195 12.5 L 195 87.5 L 145 50.5 M 365 25 L 460 25 L 412.5 0 L 365 25"
+        fill="#40c81e" opacity="75%" />
+      <circle cx="265" cy="25" r="25" fill="#3c9bdd" opacity="75%" />
+      <circle cx="265" cy="75" r="25" fill="#3c9bdd" opacity="75%" />
+      <circle cx="340" cy="50" r="50" fill="#3c9bdd" opacity="75%" />
+    </svg>
+    <div id="mode">
+      <svg viewBox="0 0 10 10">
+        <circle cx="5" cy="5" r="5" fill="#555" />
+        <path d="M 5 1 A 1.5 1.5 0 0 0 5 9" fill="#fb3" />
+      </svg>
+    </div>
+    <div id="search-cmd">
+      <svg viewBox="0 0 512 512">
+        <path
+          d="M287,0C166.1,0,68.1,98,68.1,218.9c0,42.9,12.4,83,33.7,116.8c-0.2,0.1-0.3,0.1-0.5,0.2L6.1,431.1L87,512l98.7-98.7
+        c0-0.1-0.1-0.3-0.1-0.4c30.3,15.9,64.8,24.8,101.4,24.8c120.9,0,218.9-98,218.9-218.9C505.9,98,407.9,0,287,0z M287,97.2
+        c67.2,0,121.6,54.5,121.6,121.6c0,67.2-54.4,121.6-121.6,121.6c-67.2,0-121.6-54.5-121.6-121.6C165.4,151.7,219.8,97.2,287,97.2z" />
+      </svg>
+    </div>
+    <input type="text" placeholder="Cari perintah..." id="search-cmd-input" />
   </div>
+
+  <div id="scroll-progress"></div>
+
+  <div id="goToTop" onclick="goToTop();">
+    <svg viewBox="0 0 10 10">
+      <path d="M 0 10 L 5.5 0 L 10 10 Z" fill="#40c81e" opacity="75%" />
+    </svg>
+  </div>
+
+  <div id="contacts">
+    <a href="https://wa.me/6287722713834" target="_blank" class="contacts-btn whatsapp">WhatsApp</a>
+    <a href="https://t.me/mikixbot" target="_blank" class="contacts-btn telegram">Telegram</a>
+  </div>
+
+  <hr />
+
+  <div id="cmd"></div>
+
+  <hr />
+  <div id="footer">
+    <svg viewBox="0 0 440 100">
+      <path
+        d="M 30 0 L 30 50 L 100 37.5 L 30 25 L 100 12.5 L 30 0 M 260 5 L 330 25 L 260 45 M 330 55 L 260 75 L 330 95 L 330 55"
+        fill="#00f" opacity="75%" />
+      <path d="M 0 0 L 0 100 L 30 100 L 30 0 M 110 0 L 110 100 L 140 100 L 140 0 L 110 0" fill="#0f0" opacity="75%" />
+      <circle cx="75" cy="75" r="25" fill="#f00" opacity="75%" />
+      <circle cx="200" cy="50" r="50" fill="#f00" opacity="75%" />
+      <path d="M 440 50 A 50 50 0 1 0 390 100 L 390 50 Z" fill="#ff0" opacity="50%" />
+    </svg>
+    <p>&copy; RiozeC 2022</p>
+  </div>
+
+  <script>
+    (function () {
+      var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var prevScrollpos = window.pageYOffset;
+
+      window.onscroll = function () {
+        var currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+          document.getElementById("header").style.height = "3rem";
+          if (currentScrollPos < 20) {
+            document.getElementById("goToTop").style.bottom = "110%";
+          } else {
+            document.getElementById("goToTop").style.bottom = "0.2rem";
+          }
+        } else {
+          document.getElementById("header").style.height = "0";
+          document.getElementById("goToTop").style.bottom = "110%";
+        }
+        prevScrollpos = currentScrollPos;
+        document.getElementById("scroll-progress").style.width = ((currentScrollPos / height) * 100) + "%";
+      }
+    })();
+
+    function goToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    $('#search-cmd').on('click', function () {
+      $('#search-cmd-input').toggle('0.1s');
+    });
+
+    $('#mode').on('click', function () {
+      $('html').toggleClass('day-mode night-mode');
+    });
+
+    (function () {
+      function addItem(item) {
+        var lang = 0;
+        var categories = item.category.map(function (category) {
+          return '<span class="cmd-item-category">#' + category + '</span>'
+        }).join(' ');
+        var syntax = [];
+        item.syntax.forEach(function (_syntax) {
+          var text = '<div class="cmd-syntax vt323">';
+          text += '/' + _syntax + ' ';
+          if (item.args) {
+            text += '<span style="opacity:75%;">';
+            item.args.forEach(function (arg) {
+              text += arg[0][lang] + ' ';
+            });
+            text += '</span>';
+          }
+          text += '</div>';
+          syntax.push(text);
+        });
+        var desc = '';
+        if (item.args) {
+          var list = '<ul>';
+          item.args.forEach(function (arg) {
+            list += '<li><span class="vt323">' + arg[0][lang] + '</span> = ' + arg[1][lang] + '</li>';
+          });
+          list += '</ul>';
+          desc += list;
+        }
+        if (item.desc) {
+          desc += '&emsp;' + item.desc[lang] + '<br />';
+        }
+        if (item.example) {
+          item.example.forEach(function (example) {
+            var list = '<ul style="list-style:none;opacity:75%;">';
+            item.example.forEach(function (example) {
+              list += '<li>' + example + '</li>';
+            });
+            list += '</ul>';
+            desc += list;
+          });
+        }
+        $(`
+        <div class="cmd-item">
+          <div class="cmd-item-category-container">
+            ${categories}
+          </div>
+          ${syntax.join(' ')}
+          <div class="cmd-desc">
+            ${desc}
+          </div>
+        </div>
+        `).appendTo('#cmd');
+      }
+      commandsList.sort(function (item1, item2) {
+        return item1.syntax[0].localeCompare(item2.syntax[0]);
+      }).forEach(function (item) {
+        addItem(item);
+      });
+      $('#search-cmd-input').on('input', function () {
+        if (window.pageYOffset > 150) {
+          window.scrollTo({ top: 150, behavior: 'smooth' });
+          window.scrollTo({ top: 115, behavior: 'smooth' });
+        }
+        $('#cmd').html('');
+        var value = $('#search-cmd-input').val();
+        if (value.replace(/[^a-zA-Z0-9#\/]/g, '')) {
+          if (value.startsWith('#')) {
+            commandsList.filter(function (item) {
+              return Boolean(item.category.filter(function (category) {
+                return new RegExp(value, 'i').test(category);
+              }).length);
+            }).sort(function (item1, item2) {
+              return item1.syntax[0].localeCompare(item2.syntax[0]);
+            }).forEach(function (item) {
+              addItem(item);
+            });
+          } else {
+            commandsList.filter(function (item) {
+              return Boolean(item.syntax.filter(function (syntax) {
+                return new RegExp(value, 'i').test(syntax);
+              }).length);
+            }).sort(function (item1, item2) {
+              return item1.syntax[0].localeCompare(item2.syntax[0]);
+            }).forEach(function (item) {
+              addItem(item);
+            });
+          }
+        } else {
+          commandsList.sort(function (item1, item2) {
+            return item1.syntax[0].localeCompare(item2.syntax[0]);
+          }).forEach(function (item) {
+            addItem(item);
+          });
+        }
+        if (!$('#cmd').html()) {
+          $('#cmd').html('<div class="cmd-item" style="text-align:center;">No Results :(</div>');
+        }
+      });
+    })();
+  </script>
 </body>
+
 </html>
