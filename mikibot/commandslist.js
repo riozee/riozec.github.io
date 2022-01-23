@@ -94,6 +94,21 @@ var commandsList = [
       "Find a partner, switch partner, and stops the Anonymous Chat session.",
     ],
     category: ["anonymous-chat"],
-    example: ["/asearch", "/anext", "/astop"],
+  },
+  {
+    syntax: ["getid"],
+    desc: [
+      "Menampilkan ID chat saat ini. Digunakan untuk registrasi grup.",
+      "Displays the current chat ID. Used for group registration.",
+    ],
+    category: ["bot"],
+  },
+  {
+    syntax: ["getuid"],
+    desc: [
+      "Menampilkan ID user Anda. Digunakan untuk registrasi menjadi user premium.",
+      "Displays your user ID. Used to register as a premium user",
+    ],
+    category: ["bot"],
   },
 ];
