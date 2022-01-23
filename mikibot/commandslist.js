@@ -87,4 +87,13 @@ var commandsList = [
     category: ["tools"],
     example: ["/lowercase lorem ipsum dolor sit amet"],
   },
+  {
+    syntax: ["asearch", "anext", "astop"],
+    desc: [
+      "Mencari partner, mengganti, dan menghentikan sesi Anonymous Chat.",
+      "Find a partner, switch partner, and stops the Anonymous Chat session.",
+    ],
+    category: ["anonymous-chat"],
+    example: ["/asearch", "/anext", "/astop"],
+  },
 ];
