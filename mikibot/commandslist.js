@@ -111,4 +111,12 @@ var commandsList = [
     ],
     category: ["bot"],
   },
+  {
+    syntax: ["pricing"],
+    desc: [
+      "Menampilkan pricelist Miki Bot.",
+      "Displays Miki Bot pricelist.",
+    ],
+    category: ["bot"],
+  },
 ];
