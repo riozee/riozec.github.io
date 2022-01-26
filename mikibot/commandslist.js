@@ -119,4 +119,94 @@ var commandsList = [
     ],
     category: ["bot"],
   },
+  {
+    syntax: ["set"],
+    args: [
+      [
+        ["setting", "setting"],
+        ["Nama hal yang ingin diubah/diatur.", "The name of the thing you want to change/set."]
+      ]
+    ],
+    desc: [
+      "Mengubah/mengatur sesuatu.",
+      "Change/set something.",
+    ],
+    category: ["bot"],
+  },
+  {
+    syntax: ["set"],
+    args: [
+      [
+        ["setting", "setting"],
+        ["Nama hal yang ingin diubah/diatur.", "The name of the thing you want to change/set."]
+      ]
+    ],
+    desc: [
+      "Mengubah/mengatur sesuatu.",
+      "Change/set something.",
+    ],
+    category: ["bot"],
+  },{
+    syntax: ["set lang"],
+    args: [
+      [
+        ["kode-bahasa", "language-code"],
+        ["Kode bahasa. Misalnya \"id\" untuk bahasa Indonesia.", "Language code. e.g. \"en\" for English."]
+      ]
+    ],
+    desc: [
+      "Mengganti bahasa yang Miki Bot gunakan di dalam chat. Jika di dalam grup, berlaku untuk semua anggota grup dan hanya administrator yang dapat menggantinya.",
+      "Change the language that Miki Bot uses in chat. If in a group, it applies to all group members and only administrators can change it.",
+    ],
+    category: ["bot"],
+    example: ["/set lang id"]
+  },{
+    syntax: ["set name"],
+    args: [
+      [
+        ["nama", "name"],
+        ["Nama Anda.", "Your name."]
+      ]
+    ],
+    desc: [
+      "Mengganti nama pengguna yang telah teregistrasi.",
+      "Changes the name of a registered user.",
+    ],
+    category: ["bot"],
+    example: ["/set name Rioze"]
+  },{
+    syntax: ["sticker"],
+    desc: [
+      "Mengubah gambar, video, gif dan dokumen menjadi stiker. Catatan: Hanya didukung di platform WhatsApp.",
+      "Convert an image, video, gif and document into a sticker. Note: Only supported on WhatsApp.",
+    ],
+    category: ["media"]
+  },{
+    syntax: ["unsticker"],
+    desc: [
+      "Mengubah stiker menjadi gambar/gif. Catatan: Tidak mendukung stiker animasi di Telegram.",
+      "Convert a sticker into an image/gif. Note: Does not support animated stickers on Telegram.",
+    ],
+    category: ["media"]
+  },{
+    syntax: ["convert"],
+    args: [
+      [
+        ["format", "format"],
+        ["Format tujuan file yang ingin dikonversi.", "Destination file format you want to convert."]
+      ]
+    ],
+    desc: [
+      "Mengonversi suatu dokumen ke format yang ditentukan. Catatan: Tidak semua dokumen dapat dikonversi. Lihat perintah convert selanjutnya.",
+      "Converts a document to the specified format. Note: Not all documents can be converted. See the next convert command.",
+    ],
+    category: ["converter"]
+  },{
+    syntax: ["convert mp3"],
+    desc: [
+      "Mengonversi video, audio atau dokumen yang didukung ke format MP3.",
+      "Convert a video, audio or supported document into MP3 format.",
+    ],
+    category: ["converter"]
+  },
 ];
